@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="DeCo.UserControlUI.MenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeCo.UserControlUI"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+             x:Name="ucMenuBar"
+             mc:Ignorable="d"   
+           Height="50" d:DesignWidth="800"
+             DataContext="{StaticResource MenuVM}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction 
+                Command="{Binding MouseMoveWindowCommand}" 
+                CommandParameter="{Binding ElementName=ucMenuBar}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <materialDesign:ColorZone Background="CornflowerBlue">
+            <DockPanel >
+             
+                <StackPanel Background="Transparent"
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin"
+                                    Value="2,4,2,4"/>
+                            <Setter Property="Width"
+                                    Value="40"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button
+                         Command="{Binding MinimizeWindowCommand}"
+                        CommandParameter="{Binding ElementName=ucMenuBar}"
+                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                        Background="#a5d6a7">
+                        <materialDesign:PackIcon Kind="WindowMinimize"
+                                                 Foreground="WhiteSmoke" />
+                    </Button>
+                    <Button
+                         Command="{Binding MaximizeWindowCommand}"
+                        CommandParameter="{Binding ElementName=ucMenuBar}"
+                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                        Background="#a5d6a7">
+                        <materialDesign:PackIcon Kind="WindowMaximize"
+                                                 Foreground="WhiteSmoke" />
+                    </Button>
+                    <Button
+                        Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding ElementName=ucMenuBar}"
+                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                        Background="IndianRed">
+                        <materialDesign:PackIcon Kind="WindowClose"
+                                                 Foreground="WhiteSmoke" />
+                    </Button>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                    <Image Source="../Images/LogoDeCo.png" Height="30" Width="100"
+                           HorizontalAlignment="Left" Margin="10,0"/>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>
